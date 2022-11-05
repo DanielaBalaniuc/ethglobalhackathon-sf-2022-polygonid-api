@@ -1,0 +1,187 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "ETHGlobal Hackathon PolygonID API",
+        "description": "A NodeJs Express API implementation of Polygon ID methods",
+        "license": {
+            "name": "MIT"
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/create-did": {
+            "post": {
+                "tags": [
+                    "Create polygon DID"
+                ],
+                "summary": "API Endpoint for create polygon DID",
+                "parameters": [{
+                    "name": "body",
+                    "in": "body",
+                    "description": "Create polygon DID",
+                    "required": true,
+                    "type": "string",
+                    "schema": {
+                        "properties": {
+                            "networkType": {
+                                "type": "string",
+                                "example": "testnet"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "New Create polygon DID"
+                    }
+                }
+            }
+        },
+        "/register-did": {
+            "post": {
+                "tags": [
+                    "Register polygon DID"
+                ],
+                "summary": "API Endpoint for register polygon DID",
+                "description": "Register polygon DID",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Register new polygon DID",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "properties": {
+                            "did": {
+                                "type": "string",
+                                "example": "did:polygon:testnet:0x794b781493AeD65b9ceBD680716fec257e118993"
+                            },
+                            "privateKey": {
+                                "type": "string",
+                                "example": "0xd922b5e24ab1132f68d8c3a3e758d6814f71d5b1acffdffa6a19b8f8d55db507"
+                            }
+                        }
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New register polygon DID"
+                    }
+                }
+            }
+        },
+        "/resolve-did/{did}": {
+            "get": {
+                "tags": [
+                    "Resolve polygon DID"
+                ],
+                "summary": "API Endpoint for resolve polygon DID",
+                "description": "Resolve polygon DID",
+                "parameters": [{
+                    "in": "path",
+                    "name": "did",
+                    "required": true
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New resolve polygon DID"
+                    }
+                }
+            }
+        },
+        "/update-did/{did}/{privateKey}": {
+            "patch": {
+                "tags": [
+                    "Update polygon DID"
+                ],
+                "summary": "API Endpoint for update polygon DID",
+                "description": "Update polygon DID",
+                "parameters": [{
+                    "name": "did",
+                    "in": "path",
+                    "required": true
+                }, {
+                    "name": "privateKey",
+                    "in": "path",
+                    "required": true
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Register new polygon DID",
+                    "required": true,
+                    "schema": {
+                        "type": "string",
+                        "properties": {
+                            "didDoc": {
+                                "type": "object",
+                                "example": {
+                                    "@context": "https://w3id.org/did/v1",
+                                    "id": "did:polygon:testnet:0x794b781493AeD65b9ceBD680716fec257e118993",
+                                    "verificationMethod": [{
+                                        "id": "did:polygon:testnet:0x794b781493AeD65b9ceBD680716fec257e118993",
+                                        "type": "EcdsaSecp256k1VerificationKey2019",
+                                        "controller": [
+                                            "did:polygon:testnet:0x794b781493AeD65b9ceBD680716fec257e118993",
+                                            "did:polygon:0x794b781493AeD65b9ceBD680716fec257e118993"
+                                        ],
+                                        "publicKeyBase58": "7Lnm1ZnseKDkH1baAb1opREfAU4MPY7zCdUDSrWSm9NxNTQmy4neU9brFUYnEcyy7CwFKjD11ikyP9J8cf6zEaAKrEzzp"
+                                    }]
+                                }
+                            }
+                        }
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "New update polygon DID"
+                    }
+                }
+            }
+        },
+        "/delete-did/{did}/{privateKey}": {
+            "delete": {
+                "tags": [
+                    "Delete polygon DID"
+                ],
+                "summary": "API Endpoint for delete polygon DID",
+                "description": "Update polygon DID",
+                "parameters": [{
+                    "name": "did",
+                    "in": "path",
+                    "required": true
+                }, {
+                    "name": "privateKey",
+                    "in": "path",
+                    "required": true
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Delete polygon DID"
+                    }
+                }
+            }
+        }
+    }
+}
